@@ -727,6 +727,7 @@ export function createClient<
 
           let acknowledged = false;
           socket.onmessage = ({ data }) => {
+            if (!data) return; // No data to parse
             try {
               const message = parseMessage(data, reviver);
               emitter.emit('message', message);
